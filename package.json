@@ -1,27 +1,25 @@
 {
-  "name": "ai-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
-  "type": "module",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "node index.ts",
-    "format": "prettier --write .",
-    "type-check": "tsc --noEmit",
-    "prepare": "husky"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "devDependencies": {
-    "@types/node": "latest",
-    "concurrently": "^9.2.1",
-    "husky": "^4.3.8",
-    "lint-staged": "^16.1.5",
-    "prettier": "^3.6.2"
-  }
+   "name": "ai-app",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.ts",
+   "type": "module",
+   "private": true,
+   "workspaces": [
+      "packages/*"
+   ],
+   "scripts": {
+      "dev": "node index.ts",
+      "format": "prettier --write .",
+      "type-check": "tsc --noEmit",
+      "prepare": "husky"
+   },
+   "peerDependencies": {
+      "typescript": "^5"
+   },
+   "devDependencies": {
+      "@types/node": "latest",
+      "concurrently": "^9.2.1",
+      "prettier": "^3.6.2"
+   }
 }
