@@ -1,11 +1,14 @@
 import { PrismaClient } from '../generated/prisma/client.js';
 
-export const reviewRepository = {
-    getReviews(productId: number) {
-        const prisma = new PrismaClient();
-        return prisma.review.findMany({
-            where: { id: productId },
-            orderBy: { createdAt: 'desc' },
+const client = new PrismaClient();
+
+export const productRepository = {
+    getProducts() {
+        return client.product.findMany();
+    },
+    getProduct(id: number) {
+        return client.product.findUnique({
+            where: { id },
         });
-    }
-}
+    },
+};

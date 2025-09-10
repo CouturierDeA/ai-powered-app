@@ -4,12 +4,17 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const parkInfo = readFileSync(path.join(__dirname, './WonderWorld.md'));
-const parkInfoTemplate = readFileSync(path.join(__dirname, './chatbot.txt')).toString();
 
-export const parkInfoInstructions = parkInfoTemplate.replace(
-    '{{parkInfo}}',
-    parkInfo.toString()
-);
+const parkInfo = readFileSync(
+    path.join(__dirname, './WonderWorld.md')
+).toString();
 
-const summarizeReviewsInstructions = readFileSync(path.join(__dirname, './summarize-reviews.txt')).toString();
+export const parkInfoInstructions = readFileSync(
+    path.join(__dirname, './chatbot.txt')
+)
+    .toString()
+    .replace('{{parkInfo}}', parkInfo);
+
+export const summarizeReviewsInstructions = readFileSync(
+    path.join(__dirname, './summarize-reviews.txt')
+).toString();

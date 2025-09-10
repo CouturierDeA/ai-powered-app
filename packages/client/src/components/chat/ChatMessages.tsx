@@ -1,41 +1,38 @@
-import * as React from 'react';
-import {cva, type VariantProps} from 'class-variance-authority';
+import { type ComponentProps, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 
-import {cn} from '@/lib/utils.ts';
-import type {ClipboardEvent} from "react";
+import { ChatMessage } from '@/components/chat/ChatMessage.tsx';
 
-const messageVariants = cva(
-    "px-3 py-1 rounded-x-large rounded-xl",
-    {
-        variants: {
-            variant: {
-                user:
-                    'bg-blue-600 text-white self-end',
-                bot:
-                    'bg-gray-100 text-black self-start',
-            },
-        },
-        defaultVariants: {
-            variant: 'user',
-        },
-    }
-);
-
-function trimSelection(event: ClipboardEvent) {
-    const selection = window.getSelection()?.toString().trim();
-    if (!selection) return;
-    event.preventDefault();
-    event.clipboardData.setData('text/plain', selection);
+export interface ChatMessage {
+    message: string;
+    type: 'user' | 'bot';
 }
 
-function ChatMessage({className, variant, ...props}: React.ComponentProps<'p'> & VariantProps<typeof messageVariants>) {
+interface MessagesProps extends ComponentProps<'div'> {
+    messages: ChatMessage[];
+}
+
+function ChatMessages({ messages, children }: MessagesProps) {
+    const lastMessageRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
     return (
-        <div
-            onCopy={trimSelection}
-            className={cn(messageVariants({variant, className}))}
-            {...props}
-        />
+        <div className="flex flex-col gap-3 flex-1">
+            {messages.map((message, key) => (
+                <ChatMessage
+                    key={key}
+                    variant={message.type}
+                    ref={key === messages.length - 1 ? lastMessageRef : null}
+                >
+                    <ReactMarkdown>{message.message}</ReactMarkdown>
+                </ChatMessage>
+            ))}
+            {children}
+        </div>
     );
 }
 
-export {ChatMessage, messageVariants};
+export default ChatMessages;

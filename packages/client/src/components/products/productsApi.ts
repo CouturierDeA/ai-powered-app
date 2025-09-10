@@ -1,35 +1,15 @@
 import axios from 'axios';
-// import { type Review } from '../../../../server/generated/prisma/client'
 
-export type Review = {
+export type Product = {
     id: number;
-    author: string;
-    content: string;
-    rating: number;
-    createdAt: string;
+    name: string;
+    description: string | null;
+    price: number;
 };
 
-export type GetReviewsResponse = {
-    summary: string | null;
-    reviews: Review[];
-};
-
-export type SummarizeResponse = {
-    summary: string;
-};
-
-export const reviewsApi = {
-    async fetchReviews(productId: number) {
-       const res = await axios
-           .get<GetReviewsResponse>(`/api/products/${productId}/reviews`);
-       return res.data;
-    },
-
-    async summarizeReviews(productId: number) {
-       const res = await axios
-           .post<SummarizeResponse>(
-               `/api/products/${productId}/reviews/summarize`
-           );
-       return res.data;
+export const productsApi = {
+    async fetchProducts() {
+        const res = await axios.get<Product[]>('/api/products/');
+        return res.data;
     },
 };
