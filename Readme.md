@@ -1,4 +1,4 @@
-# AI-Powered application
+# AI-Powered Application
 
 Explore the strategic use of AI, particularly Large Language Models (LLMs), to address key business needs.
 Training includes developing solutions for customer support automation via targeted chatbots,
@@ -43,8 +43,9 @@ First, you need to install project dependencies:
 
 ### Run review summarizer:
 
-1. Run SQL server:
-   [https://dev.mysql.com/downloads/mysql/] Install **MYSQL Server** Select your Operating System and server version 9.4. Set admin password to access the sql server later
+1. Install [SQL server](https://dev.mysql.com/downloads/mysql/)
+ - Select your Operating System and server version 9.4.
+ - Set admin password to access the sql server later
 
 Run sql server (from the terminal)
 
