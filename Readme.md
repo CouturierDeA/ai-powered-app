@@ -44,48 +44,46 @@ First, you need to install project dependencies:
 ### Run review summarizer:
 
 1. Install [SQL server](https://dev.mysql.com/downloads/mysql/)
- - Select your Operating System and server version 9.4.
- - Set admin password to access the sql server later
+   - Select your Operating System and server version 9.4.
+   - Set admin password to access the sql server later
 
-Run sql server (from the terminal)
+    Run sql server (from the terminal)
 
-```
-sudo /usr/local/mysql/support-files/mysql.server start
-```
+    ```
+    sudo /usr/local/mysql/support-files/mysql.server start
+    ```
+    Enter your PC user pwd
 
-Enter your PC user pwd
+    ```
+    Mysql -u root -p
+    ```
 
-```
-Mysql -u root -p
-```
+    Then enter your admin password.
 
-Then enter your admin password.
+    Create .env file (you can copy .env.example).
 
-Create .env file (you can copy .env.example).
+    Replace ADMIN_PWD with your admin password.
 
-Replace ADMIN_PWD with your admin password.
+    Run database migrations from the /packages/server folder:
 
-Run database migrations from the /packages/server folder:
+    ```
+    cd packages/server/
+    ```
 
-```
-cd packages/server/
-```
+    ```
+    npx prisma migrate dev
+    ```
 
-```
-npx prisma migrate dev
-```
+    Then seed the database with products and reviews:
 
-Then seed the database with products and reviews:
-
-```
-npm run seed
-```
+    ```
+    npm run seed
+    ```
 
 2. Download and install [Ollama](https://ollama.com/download]) select your Operating System
 
 
-Then download and run **tinyllama** model
-([docs](https://ollama.com/library/tinyllama))
+Then download and run **tinyllama** model ([docs](https://ollama.com/library/tinyllama))
 ```
 ollama run tinyllama
 ```
